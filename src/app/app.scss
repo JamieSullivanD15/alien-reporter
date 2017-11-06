@@ -1,0 +1,22 @@
+
+ion-header {
+
+  .app-header {
+    color: white;
+    font-size: 28px;
+    letter-spacing: 7px;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  img {
+    max-width: 80px;
+    max-height: 80px;
+    width: 100%;
+    height: 100%;
+  }
+
+} // ion-header
+
+.content {
+  background-color: map-get($colors, light);
+} // content

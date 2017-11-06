@@ -1,0 +1,64 @@
+page-sightings {
+
+  .main {
+    width: 95%;
+    margin: 0 auto;
+    background-color: white;
+    height: auto !important;
+    min-height: 100%;
+    position: relative;
+  } // main
+
+  .list-header {
+    font-size: $header-size;
+    margin: 10px 0px;
+  } // list-header
+
+  .sightings-list {
+    width: 90%;
+    margin: 0 auto;
+
+    .sightings-list-labels {
+      font-weight: bold;
+    }
+  } // sightings-list
+
+  // Sighting object details
+  .sighting {
+    width: 90%;
+    margin: 0 auto;
+
+    .sighting-form {
+      margin: 20px 0;
+      border: 1px solid map-get($colors, primary);
+      border-radius: 5px;
+      padding: 5px 20px;
+
+      ion-icon {
+        color: map-get($colors, primary);
+        font-size: 44px;
+      }
+    } // sighting-form
+
+    .button {
+      background-color: map-get($colors, primary);
+      color: white;
+      font-size: 18px;
+      padding: 5px 10px;
+      margin-bottom: 20px;
+      margin-right: 10px;
+      border-radius: 5px;
+
+      ion-icon {
+        margin-right: 5px;
+      }
+
+      &:hover {
+        color: white;
+        background-color: map-get($colors, secondary);
+      }
+    } // button
+
+  } // sighting
+
+}

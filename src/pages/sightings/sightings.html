@@ -1,0 +1,82 @@
+<ion-header no-padding no-border>
+
+  <ion-navbar no-padding color="primary">
+    <ion-row no-padding justify-content-center>
+      <ion-col col-4 col-md-2 no-padding text-center> <img src="assets/imgs/alien-logo.png" alt=""></ion-col>
+      <ion-col col-8 col-md-10 class="app-header" no-padding align-self-center> Alien Reporter </ion-col>
+    </ion-row>
+  </ion-navbar>
+
+</ion-header>
+
+<!--
+  Main content consists of a grid with a single row and column.
+  The column contains a list of all sightings that were found in JSON endpoint
+  and a div which contains all information associated with a particular sighting.
+  Switching between the views is done with a boolean named 'viewing'.
+-->
+
+<ion-content no-padding class="content">
+
+  <ion-grid class="main" no-padding>
+    <ion-row no-padding>
+
+      <ion-col>
+        <!-- List of all sightings, show if viewing sighting details is not active -->
+        <ion-list no-padding class="sightings-list" *ngIf="!viewing">
+          <ion-row class="list-header">Sightings</ion-row>
+
+          <ion-item no-padding class="sightings-list-labels">
+            <ion-row justify-content-start>
+              <ion-col col-3 col-xl-2 text-center>Form ID</ion-col>
+              <ion-col col-6 col-xl-2 text-center>Date</ion-col>
+              <ion-col col-3 col-xl-2 text-center>Editor</ion-col>
+            </ion-row>
+          </ion-item>
+
+          <button ion-item no-padding *ngFor="let sighting of alienSightings; let i = index" (click)="toggleView(i)">
+            <ion-row justify-content-start>
+              <ion-col col-3 col-xl-2 text-center>{{sighting.formId}}</ion-col>
+              <ion-col col-6 col-xl-2 text-center>{{sighting.date}}</ion-col>
+              <ion-col col-3 col-xl-2 text-center>{{sighting.lastChangedBy}}</ion-col>
+            </ion-row>
+          </button>
+        </ion-list>
+        <!-- // Sighting list end -->
+
+        <!-- Sighting details, show if viewing sighting details is active -->
+        <div class="sighting" *ngIf="viewing" >
+          <ion-row class="list-header">Form ID: {{sighting.formId}}</ion-row>
+
+          <ion-row>Date: {{sighting.date}}</ion-row>
+          <ion-row>Time: {{sighting.time}}</ion-row>
+          <ion-row>Editor: {{sighting.lastChangedBy}}</ion-row>
+
+          <!-- Form details with reorderable list-->
+          <ion-list class="sighting-form"  [reorder]="editing" (ionItemReorder)="reorderItem($event)" no-padding>
+            <ion-item *ngFor="let item of sighting.form" no-padding>
+              <ion-row no-padding class="sighting-form-id">{{item.id}}</ion-row>
+              <ion-row no-padding>
+                <ion-col col-12 col-lg-2>{{item.caption}}</ion-col>
+                <ion-col col-12 col-lg-2>{{item.type}}</ion-col>
+              </ion-row>
+            </ion-item>
+          </ion-list>
+
+          <ion-row justify-content-start>
+            <button ion-button clear no-padding (click)="back()">
+              <ion-icon name="arrow-back"></ion-icon> Back
+            </button>
+            <button ion-button clear no-padding (click)="toggleReorder()">
+              {{reorderButton}}
+            </button>
+          </ion-row>
+
+        </div>
+        <!-- // Sighting form details end -->
+        </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
